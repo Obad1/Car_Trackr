@@ -1,0 +1,88 @@
+import random
+
+class TrackingFleet:
+    def __init__(self, num_of_cars):
+        self.number = num_of_cars
+        self.latitude_low = 6.5115
+        self.latitude_high = 6.5195
+        self.longitude_low = 3.3855
+        self.longitude_high = 3.3935
+
+        self.cars = [[] for _ in range(4)]
+
+    def defineCar(self):
+        car_colors = ["Red", "Silver", "Purple", "White", "Orange"]
+        car_types = ["Toyota", "Volkswagen", "Bentley", "Benz", "Bugatti"]
+
+        for x in range(self.number):
+            self.cars[x].append(x + 1)
+            self.cars[x].append(random.choice(car_colors))
+            self.cars[x].append(random.choice(car_types))
+            self.cars[x].append("REG" + str(random.randint(1000, 9999)))
+
+            latitude = round(random.uniform(self.latitude_low, self.latitude_high), 4)
+            longitude = round(random.uniform(self.longitude_low, self.longitude_high), 4)
+
+            self.cars[x].append(latitude)
+            self.cars[x].append(longitude)
+
+    def driveCar(self):
+        for x in range(self.number):
+            new_latitude = round(random.uniform(self.latitude_low, self.latitude_high), 4)
+            new_longitude = round(random.uniform(self.longitude_low, self.longitude_high), 4)
+
+            self.cars[x][4] = new_latitude
+            self.cars[x][5] = new_longitude
+
+    def trackCar(self):
+        for x in range(self.number):
+            car = self.cars[x]
+            print(
+                f"\nCar {car[0]}: {car[1]} {car[2]} {car[3]}"
+                f"\nLocation: {car[4]}°N, {car[5]}°E\n"
+            )
+
+def main():
+    print("Tracking Fleet Vehicles v1.0\n")
+
+    while True:
+        try:
+            number = int(input("Enter number of cars (2–4): "))
+            if 2 <= number <= 4:
+                break
+            else:
+                print("Please enter a value between 2 and 4.")
+        except ValueError:
+            print("Invalid input. Please enter a numeric value.")
+
+    fleet = TrackingFleet(number)
+    fleet.defineCar()
+    fleet.trackCar()
+
+    while True:
+        print("\nMenu:")
+        print("1. Drive vehicles")
+        print("2. Track vehicles")
+        print("3. Terminate system")
+
+        try:
+            choice = int(input("Enter choice: "))
+        except ValueError:
+            print("Invalid input.")
+            continue
+
+        if choice == 1:
+            fleet.driveCar()
+            print("\nVehicles have moved.")
+            break
+        elif choice == 2:
+            fleet.trackCar()
+            break
+        elif choice == 3:
+            print("Tracking system terminated.")
+            break
+        else:
+            print("Invalid selection.")
+
+if __name__ == "__main__":
+    main()
