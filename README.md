@@ -2,14 +2,14 @@ Fleet Tracker CLI
 
 A lightweight Python application designed to simulate a vehicle tracking system. This tool allows users to initialize a fleet of vehicles, assign random attributes, and simulate movement within a specific geographic bounding box.
 
-## 🚀 Features
+##  Features
 
   * **Dynamic Fleet Generation:** Supports tracking between 2 and 4 vehicles simultaneously.
   * **Randomized Attributes:** Automatically assigns car colors, luxury brands (Toyota, Benz, Bugatti, etc.), and unique registration numbers.
   * **Coordinate Simulation:** Simulates movement within specific latitude/longitude ranges (default set to the Lagos, Nigeria region).
   * **Interactive Menu:** Simple CLI interface to drive vehicles, view current locations, or terminate the system.
 
-## 🛠️ Requirements
+##  Requirements
 
   * Python 3.x
 
